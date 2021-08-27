@@ -3,22 +3,23 @@
 
 <script language="javaScrpit">
 
-function greeting()
+function greeting1()
 {
 	alert("hello");
 }
 
 function greeting2()
 {
-	var name = promtpt("Type your name"); // = is the assignment operator
-	alert("hello there, "+name);
+	var response = promtpt("Type your name"); // = is the assignment operator
+	alert(response);
 }										  // this asigns the element on the right to
 										  // the element on the left
 
-function greeting3)
+function greeting2()
 {
-	alert("class is ending");
-}
+	var name = confirm("Do you like my site?"); // = is the assignment operator
+	alert("hello there, "+name);
+}								
 </script>
 </head>
 <body>
@@ -30,14 +31,15 @@ function greeting3)
 Click here to <a href="index.html">return to my index page.</a>
 <br/><br/>
 
-<input type="button" value="click for messege" on click="greeting()"/>
+<hr/>
+<input type="button" value="click for messege" onclick="greeting1()"/>
+
+<hr/>
+<input type="button" value="click for question" onclick="greeting2()"/>
+
+<hr/>
+<input type="button" value="click for a conformation" onclick="greeting3()"/>
 
 
-
-<input type="button" value="click for question" on click="greeting2()"/>
-<hr/
-
-<input type="button" value="click for a conformation" onclick="greeting3()" />
-<hr/
 </body>
 </html>
