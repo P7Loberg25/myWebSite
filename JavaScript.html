@@ -1,46 +1,117 @@
 <html>
 <head>
 
-<script language="javaScrpit">
+<script language="javaScript">
 
-function greeting1()
+//<center><img src = "https://image.shutterstock.com/image-vector/chocolate-chip-cookie-vector-clip-260nw-283370942.jpg" width = 400>
+function guessing()
 {
-	alert("hello");
+
+	/* block comment
+	Write out the algorithm that would prompt a user to guess a number between
+	1 and 10. The program should tell the user if the guess is too high or 
+	to low. If the guess is correct, the program should alert how many guesses 
+	they took.
+	
+	1. please guess a number between 1 and 10- var response = prompt("your guess")
+	2. tell them if it is too low  - ifUsersGuess = less then var rand;
+														 alert("to low guess again!")
+	3. tell them if it is too high - ifUsersGuess = more then var rand;
+									 alert("to high guess again!")
+	4.then record steps in 2 and 3, and put out what that number is when they guess the number correctly
+	5. when tehy guess correctly say something like "goodjob you got it right, heres how many guesses you took __"
+
+
+	
+	1. create (declare) a variable for users answer, the random number, the number guessed
+	2. sET numberOfGuesses to 0
+	3. store a random number between 1 and 10 in our rand
+	4.set usersGuess to -1
+	5. create a while loop
+			while (rand !=usersGuess) // == tests equalty. != tests is rand does equal uG
+	6. Inside while, 
+		6a. increase numOfGuesses
+		6b. prompt the user to imput a new guess
+		6c. if usersGuess is too low, alert this fact		
+		6d. if usersGues is too high, alert this fact
+	loop until answer is correct
+	7. After the while. alert that they are correct and how many guesses too
+	
+	
+	test if answer is to low-update useralert if correct "Yeah!"+number of guesses
+	4. test if answer is to high-update user
+	5. alert if correct "Yeah!"+number of guesses
+	
+	*/
+	
+    var usersGuess = -1;
+    var numOfGuesses = 0; // camelCase
+	var rand = Math.random()*100 + 1;
+	rand = parseInt(rand);
+	//alert(rand);
+
+	while ( rand != usersGuess  ) // loop while rand does NOT equal usersGuess
+	{
+		usersGuess = prompt("if you guess the right number between 1-100 I might give you a cookie");
+		numOfGuesses = numOfGuesses +1; // add one to var
+										// numOfGuesses++;
+		if(  usersGuess < rand )
+		{
+			alert("your guess is to low, no cookie for you!");
+		}
+		else if(  usersGuess > rand )
+		{
+			alert("your guess is to high, no cookie for you!");
+		}
+	}
+	alert("HAHA NO COOKIE FOR YOU STILL, but you got it in "+numOfGuesses+" Guesses, Good job i guess");
 }
 
 function greeting2()
 {
-	var response = promtpt("Type your name"); // = is the assignment operator
+	//var declares a variable. use var only once per variable
+	// 1st time a variable is assigned data is called "initialize"
+	var response = prompt("Type your name"); // = is the assignment operator
 	alert("hello there, "+response);
-}										  // this asigns the element on the right to
+										  // this asigns the element on the right to
 										  // the element on the left
+
+}
 
 
 function greeting3()
 {
 	var name = confirm("Do you like my site?"); // = is the assignment operator
 	alert(name);
-}								
+}	
+
+						
 </script>
 </head>
-<body>
-
+<body bgcolor="10CFF9" text align="center ">
+<font face="Ink Free">
 <h1> My First JavaScript Page </h1>
+<img src = "https://image.shutterstock.com/image-vector/chocolate-chip-cookie-vector-clip-260nw-283370942.jpg" width = 400>
+<br/>
 
+Click here to <a href="index.html">return to my wonderfull index page.</a> 
+<br/><br/><br/><br/>
 
-
-Click here to <a href="index.html">return to my index page.</a>
-<br/><br/>
 
 <hr/>
-<input type="button" value="click for messege" onclick="greeting1()"/>
+<input type="button" value="click if you want" onclick="prompt()"/>
+
+<hr/>
+<input type="button" value="click for if you kinda want a cookie" onclick="guessing()"/>
+
 
 <hr/>
 <input type="button" value="click for question" onclick="greeting2()"/>
 
 <hr/>
-<input type="button" value="click for a conformation" onclick="greeting3()"/>
-<body bgcolor="F94C10">
+<input type="button" value="click for question" onclick="greeting3()"/>
+
 
 </body>
 </html>
+
