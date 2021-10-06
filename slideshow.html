@@ -1,0 +1,113 @@
+<html>
+<head>
+<script language = "javaScript">
+var counter = 0;
+var timer;
+var autoStart = false;
+var picList = [ "images/slideshow/slide1Logo.jpg",
+			    "images/slideshow/slide2Aaron.jpg",
+			    "images/slideshow/slide3Da'vante.jpg",
+			    "images/slideshow/slide4Brett.jpg",
+			    "images/slideshow/slide5Reggie.jpg",
+			    "images/slideshow/slide6Mike.jpg"	];
+
+
+var clipList = [ "sounds/slide1Packers.mp3",
+				 "sounds/slide2Aaron.mp3",
+				 "sounds/slide3Da'vante.mp3",
+				 "sounds/slide4Brett.mp3",
+				 "sounds/slide5Reggie.mp3",
+				 "sounds/slide6Mike.mp3"  ];
+				   
+//var clipLength = [ 12, 9, 2, 5, 7, 8 ] //change numbers
+			   
+
+function nextPic()
+{
+	
+	document.getElementById("display").src = picList[counter];
+	document.getElementById("player").src = clipList[counter];
+	document.getElementById("player").play();
+	
+	
+	if (counter == picList.length - 1 )
+	{
+		counter = 0;
+	}
+	else
+	{
+		counter++;
+	}
+	
+	
+}
+
+
+function run()
+{
+	if (autoStart == false)
+	{
+		autoStart = true
+		document.getElementById("runButton").value = "Pause";
+	}
+	else
+	{
+		autoStart = false;
+		document.getElementById("runButton").value = "Run";
+	}
+	
+	autoPlay();
+
+	
+}
+
+
+
+function autoPlay()
+{
+	if( autoStart == true)
+	{
+	nextPic();
+	var clipTime = clipList[counter].length;
+	//alert(clipTime);
+	//timer = setTimeout ( "autoPlay()" , clipList*1000 );
+	timer = setTimeout ("autoPlay()", 11000 );
+	}
+	else
+	{
+		clearTimeout(timer);
+	}
+}
+
+</script>
+
+
+</head>
+<body bgcolor="lightblue">
+<font face="Harrington" color = "yellow" >
+<center>
+
+<h1> Green Bay Packers </h1>
+
+Click here to<a href="index.html"> return to my home page. </a> <br/>
+
+
+
+<br/> <br/>
+
+<input type="button" value="Next picture" onclick="nextPic()"/>
+
+<input type="button" value="Run Slideshow" onclick="run()" id="runButton"/>
+
+<br/><br/>
+
+<img src="images/slideshow/slide1Logo.jpg" id="display"/>
+
+<audio id="player"></audio>
+
+</center>
+
+
+
+</body>
+</html>
