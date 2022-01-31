@@ -1,0 +1,240 @@
+<html>
+<head>
+<script language = JavaScript>
+var counter = 0;
+var score = 0;
+var words = ["emigrant",
+			 "immigrant", 
+			 "state",
+			 "hierarchical diffusion",
+			 "relocation diffusion"  
+			 ]
+			
+var defs = ["coming",
+		    "leaving",
+			"country",
+			"power to less",
+			"moving" 
+			]
+			
+			
+var asked = [ false,
+			  false,
+			  false,
+			  false,
+			  false
+			]
+			  
+var qAsked = 0;		  
+			  
+function nextQ()
+{
+	// Store the state of the "terms" radio button in a variable called termsOrDefs
+	var termsOrDefs = document.getElementById("terms").checked;
+	displayClue(termsOrDefs);// terms = termsOrDefs
+	document.getElementById("answer").value = "";
+	
+	// Write that hides the image div. The property to hide it is "hidden".
+	document.getElementById("image").style.visibility = "hidden";
+	
+}
+
+function displayClue(terms)
+{
+	// Display the first element of words list if the terms parameter is true in the "clue" textbox
+	// Otherwise alert the first element of defs in the clue textbox. 
+	
+	//Modify your code so that the clues cycle through each time the button is clicked.
+	
+	qAsked = getUnusedIndex();
+	if(terms == true)
+	{
+		document.getElementById("clue").value = words[qAsked];
+	}
+	else
+	{
+		document.getElementById("clue").value = defs[qAsked];
+	}
+	
+}
+
+function nextA()
+{
+	var termsOrDefs = document.getElementById("terms").checked;
+	checkAnswer(termsOrDefs)
+}
+
+
+function checkAnswer(terms)
+{
+	// store the users answer in a new variable called userAns. Then alert. 
+	var answerList;
+	if(terms == true) 
+	{
+		answerList = defs;
+		
+	}
+	else
+	{
+		answerList = words;
+	}
+	
+	var userAns = document.getElementById("answer").value
+	// write an if-statement that tests if userAns equals the element at counter of defs
+	// If correct alert "Correct!" and increment score var by some amount.
+	
+	if(userAns == answerList[qAsked])//user is correct!
+	{
+		score += 1;
+		alert("Correct! Your score is "+score);
+		//Write code that sets the winLoss element to the winning image. 
+		
+		document.getElementById("winLoss").src = "images/happy student.jpg";
+	}
+	else // User's guess is incorrect
+	{
+		alert("man you stink at this!");
+		//Write code that sets the winLoss element to the sad image. 
+		
+		document.getElementById("winLoss").src = "images/sad student.jpg";
+	}
+	
+	var midPoint = window.innerWidth
+	document.getElementById("image").style.left = ((midPoint/2)-158);
+	document.getElementById("image").style.visibility = "visible";
+	
+	
+	if(counter < words.length-1) 
+	{
+		counter++;
+	}
+	else // User has finished the quiz
+	{
+		counter = 0
+		endQuiz();
+	}
+}
+
+function doStuff()
+{
+	var temp = getUnusedIndex();
+	if( temp >-1)
+		alert(temp);
+	else 
+		alert("All Question have been asked");
+}
+
+
+function getUnusedIndex()
+{
+	// write code to generate a random number between 0 and asked.lengh
+	var rand = Math.floor(Math.random()*asked.length);
+	// write an if-statment that checks if asked at rand is false
+	
+	
+	/********* An infinite loop eventually occurs. Why? *******************/
+	if( counter < asked.length )
+	{
+		while( asked[rand] == true ) 
+		{
+			rand = Math.floor(Math.random()*asked.length);
+		}// rand is a number that has not been asked yet
+	}
+	else
+	{
+		rand = -1;// Not a valid index for an array
+	}
+	
+	
+	asked[rand] = true;
+	//counter++;
+	
+	
+	return rand;
+}
+
+function endQuiz()
+{
+	
+	alert("Nice job you completed this quiz, out of 5 questions you got " +score+" right")
+	for(i = 0; i < asked.length; i++)
+	{
+		asked[i] = false;
+	}
+	
+	documant.getElementById(answer).value = "";
+	document.getElementById(clue).value = "";
+	if(score == 2)
+	{
+		alert("probobly the best you can do tbh")
+		document.getElementById("winLoss").src = "images/sad student.jpg";
+	}
+	if(score == 1)
+	{
+		alert("YOU SUCK")
+		document.getElementById("winLoss").src = "images/sad student.jpg";
+	}
+	if(score == 0)
+	{
+		alert("your honestly just the worst there is and ever will be")
+		document.getElementById("winLoss").src = "images/sad student.jpg";
+	}
+	if(score == 3)
+	{
+		alert("well you still suck just a little less")
+		document.getElementById("winLoss").src = "images/happy student.jpg";
+	}
+	if(score == 4)
+	{
+		alert("wow your actually not that bad")
+		document.getElementById("winLoss").src = "images/happy student.jpg";
+	}
+	if(score == 5)
+	{
+		alert("honestly im impressed")
+		document.getElementById("winLoss").src = "images/happy student.jpg";
+	}
+	score = 0;
+	counter = 0;
+	
+
+}
+
+
+</script>
+</head>
+<body bgcolor="lightpink">
+<center>
+<font face = "Harrington" size="4">
+<h1>Very Cool AP HUG Vocab Quiz for Cool People</h1> 
+	
+
+<input type="radio" id="terms" name="qType" onchange="restart()" checked>
+  <label for="terms">Words</label>
+<input type="radio" id="defs" name="qType" on>
+  <label for="defs">Definitions</label>
+<input type="button" value="Next" onclick="nextQ()"/>
+
+<br/>
+
+
+<br/><br/>
+<input type = "text" id="clue" readonly size=40>
+
+<br/><br/>
+<input type = "text" id="answer" onfocusout="nextA()" size=40>
+<br/>
+<input type="button" value="Check Answer" />
+<br/><br/>
+
+Click here to return to <a href ="index.html"> my home page! </a>
+</center> 
+
+<div id="image" style="position:absolute; top:252; left:50; visibility:hidden;">
+
+	<img id="winLoss" src="images/happy student.jpg" width="700">
+
+</div>
+
+</body>
+</html>
