@@ -10,8 +10,8 @@ var words = ["emigrant",
 			 "relocation diffusion"  
 			 ]
 			
-var defs = ["coming",
-		    "leaving",
+var defs = ["leaving",
+		    "coming",
 			"country",
 			"power to less",
 			"moving" 
